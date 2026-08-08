@@ -26,7 +26,7 @@ Spring Cloud Alibaba + Redis + Vue3 + 微信小程序 + Docker
    # Docker 方式
    cd backend/demo2 && docker compose up -d
 
-   # IDEA 方式：启动 6 个 Application
+   # IDEA 方式：SpringCloudGroup集合启动
 
 4. 启动前端：
    cd admin-web && npm install && npm run dev
