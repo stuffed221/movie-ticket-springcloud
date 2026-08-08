@@ -1,0 +1,30 @@
+<!--pages/movie/detail.wxml-->
+<view class="container">
+  <view class="movie-header">
+    <image wx:if="{{movie.moviePoster}}" src="{{movie.moviePoster}}" mode="aspectFill" class="poster" />
+    <view wx:else class="poster no-poster-detail">暂无海报</view>
+    <view class="header-info">
+      <view class="movie-name">{{movie.movieName}}</view>
+      <view class="movie-meta">{{movie.movieType}} | {{movie.movieLanguage}} | {{movie.movieTime}}分钟</view>
+      <view class="movie-actor">主演：{{movie.movieActor}}</view>
+      <view class="release">上映时间：{{movie.releaseTime}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">影片简介</view>
+    <view class="intro">{{movie.movieIntroduction || '暂无简介'}}</view>
+  </view>
+
+  <view class="section-title">排片信息</view>
+  <view wx:if="{{scheduleList.length === 0}}" class="empty">暂无排片</view>
+  <view wx:for="{{scheduleList}}" wx:key="scheduleId" class="card schedule-card" bindtap="goSeat" data-schedule="{{item}}">
+    <view class="schedule-cinema">{{item.scheduleCinemaName}}</view>
+    <view class="schedule-hall">{{item.scheduleHall}}号厅</view>
+    <view class="schedule-row">
+      <view class="schedule-time">{{item.scheduleShowTime}}</view>
+      <view class="schedule-price">¥{{item.schedulePrice}}</view>
+    </view>
+    <view class="schedule-seats">剩余座位：{{item.scheduleRemainseats}}座</view>
+  </view>
+</view>

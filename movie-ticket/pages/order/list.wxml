@@ -1,0 +1,42 @@
+<!--pages/order/list.wxml-->
+<view class="container">
+  <view wx:if="{{orderList.length === 0}}" class="empty">暂无订单</view>
+  <view wx:for="{{orderList}}" wx:key="orderId" class="card order-card" bindtap="showDetail" data-index="{{index}}">
+    <view class="order-no">{{item.orderNo}}</view>
+    <view class="order-movie">{{item.orderMovieName || '--'}}</view>
+    <view class="order-info">{{item.orderCinemaName}} {{item.orderHall}}号厅</view>
+    <view class="order-info">座位：{{item.orderSeatDisplay}}</view>
+    <view class="order-row">
+      <text class="order-amount">¥{{item.showAmount}}</text>
+      <text class="order-status status-{{item.orderStatus}}">{{statusMap[item.orderStatus]}}</text>
+    </view>
+    <view class="order-time">{{item.orderCreateTime}}</view>
+
+    <view wx:if="{{item.orderStatus === 0}}" class="order-actions" catchtap="noop">
+      <button class="action-btn cancel-btn" size="mini" data-id="{{item.orderId}}" bindtap="cancelOrder">取消订单</button>
+      <button class="action-btn pay-btn" size="mini" data-id="{{item.orderId}}" bindtap="goPay">去支付</button>
+    </view>
+    <view wx:if="{{item.orderStatus === 1}}" class="order-actions" catchtap="noop">
+      <button class="action-btn refund-btn" size="mini" data-id="{{item.orderId}}" bindtap="refundOrder">退款</button>
+    </view>
+  </view>
+
+  <!-- 订单详情弹窗 -->
+  <view class="modal-mask" wx:if="{{showDetail}}" bindtap="hideDetail"></view>
+  <view class="modal-card" wx:if="{{showDetail}}">
+    <view class="modal-title">订单详情</view>
+    <view class="detail-row"><text class="dl">订单编号</text><text class="dv">{{detail.orderNo}}</text></view>
+    <view class="detail-row"><text class="dl">影片</text><text class="dv">{{detail.orderMovieName}}</text></view>
+    <view class="detail-row"><text class="dl">影院</text><text class="dv">{{detail.orderCinemaName}} {{detail.orderHall}}号厅</text></view>
+    <view class="detail-row"><text class="dl">座位</text><text class="dv">{{detail.orderSeat}}</text></view>
+    <view class="detail-row"><text class="dl">金额</text><text class="dv price">¥{{detail.showAmount || detail.orderAmount}}</text></view>
+    <view class="detail-row"><text class="dl">状态</text><text class="dv status-{{detail.orderStatus}}">{{statusMap[detail.orderStatus]}}</text></view>
+    <view class="detail-row"><text class="dl">创建时间</text><text class="dv">{{detail.orderCreateTime}}</text></view>
+    <view wx:if="{{detail.orderPayTime}}" class="detail-row"><text class="dl">支付时间</text><text class="dv">{{detail.orderPayTime}}</text></view>
+    <view wx:if="{{detail.orderStatus === 0}}" class="detail-row"><text class="dl">支付截止</text><text class="dv warn">{{detail.orderPayDeadline}}</text></view>
+    <view wx:if="{{detail.orderCancelTime}}" class="detail-row"><text class="dl">取消时间</text><text class="dv">{{detail.orderCancelTime}}</text></view>
+    <view wx:if="{{detail.orderCancelReason}}" class="detail-row"><text class="dl">取消原因</text><text class="dv">{{detail.orderCancelReason}}</text></view>
+    <image wx:if="{{qrcodeUrl}}" src="{{qrcodeUrl}}" style="width:300rpx;height:300rpx;display:block;margin:20rpx auto 0" mode="aspectFit"></image>
+    <button class="modal-close" bindtap="hideDetail">关闭</button>
+  </view>
+</view>

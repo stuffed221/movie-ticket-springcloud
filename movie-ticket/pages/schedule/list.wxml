@@ -1,0 +1,17 @@
+<!--pages/schedule/list.wxml-->
+<view class="container">
+  <view wx:if="{{scheduleList.length === 0}}" class="empty">暂无排片信息</view>
+  <view wx:for="{{scheduleList}}" wx:key="scheduleId" class="card schedule-card">
+    <view class="schedule-name">{{item.scheduleMovieName}}</view>
+    <view class="schedule-row">
+      <text>{{item.scheduleCinemaName}} | {{item.scheduleHall}}号厅</text>
+    </view>
+    <view class="schedule-row">
+      <text>放映时间：{{item.scheduleShowTime}}</text>
+    </view>
+    <view class="schedule-row">
+      <text class="schedule-price">¥{{item.schedulePrice}}</text>
+      <text class="schedule-seats">剩余：{{item.scheduleRemainseats}}座</text>
+    </view>
+  </view>
+</view>

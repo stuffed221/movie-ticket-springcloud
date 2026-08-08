@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: gateway
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisReactiveAutoConfiguration
+      - org.redisson.spring.starter.RedissonAutoConfiguration
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:localhost:8848}
+    gateway:
+      routes:
+        - id: movie-route
+          uri: lb://movie-service
+          predicates:
+            - Path=/movie/**
+        - id: cinema-route
+          uri: lb://cinema-service
+          predicates:
+            - Path=/cinema/**
+        - id: schedule-route
+          uri: lb://schedule-service
+          predicates:
+            - Path=/schedule/**
+        - id: order-route
+          uri: lb://order-service
+          predicates:
+            - Path=/order/**
+        - id: user-route
+          uri: lb://user-service
+          predicates:
+            - Path=/user/**,/manager/**
+
+jwt:
+  secret: cinema-movie-ticket-system-jwt-secret-key-2026
+  expiration: 86400000

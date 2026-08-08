@@ -1,0 +1,30 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <view class="search-bar">
+    <input class="search-input" placeholder="搜索影片名称" bindinput="onSearchInput" value="{{keyword}}" />
+    <button class="search-btn" bindtap="onSearch" size="mini">搜索</button>
+    <button class="clear-btn" bindtap="onClear" size="mini">✕</button>
+  </view>
+
+  <view class="section-title">热映影片</view>
+
+  <view wx:if="{{movieList.length === 0}}" class="empty">暂无影片数据</view>
+
+  <view wx:for="{{movieList}}" wx:key="movieId" class="card movie-card" bindtap="goDetail" data-id="{{item.movieId}}">
+    <view class="movie-poster">
+      <image wx:if="{{item.moviePoster}}" src="{{item.moviePoster}}" mode="aspectFill" />
+      <view wx:else class="no-poster">暂无海报</view>
+    </view>
+    <view class="movie-info">
+      <view class="movie-name">{{item.movieName}}</view>
+      <view class="movie-meta">{{item.movieType}} | {{item.movieLanguage}} | {{item.movieTime}}分钟</view>
+      <view class="movie-actor">主演：{{item.movieActor}}</view>
+      <view class="movie-price">{{item.minPrice ? '¥' + item.minPrice + '起' : '暂无排片'}}</view>
+    </view>
+  </view>
+
+  <view wx:if="{{hasMore && movieList.length > 0}}" class="load-more" bindtap="loadMore">
+    {{loading ? '加载中...' : '点击加载更多'}}
+  </view>
+  <view wx:if="{{!hasMore && movieList.length > 0}}" class="no-more">没有更多了</view>
+</view>

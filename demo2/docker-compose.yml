@@ -1,0 +1,92 @@
+﻿services:
+  gateway:
+    image: demo2-gateway:latest
+    container_name: movie-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.cloud.nacos.server-addr=host.docker.internal:8848
+      - NACOS_ADDR=host.docker.internal:8848
+
+  movie-service:
+    image: demo2-movie-service:latest
+    container_name: movie-movie
+    ports:
+      - "8083:8083"
+    environment:
+      - spring.cloud.nacos.server-addr=host.docker.internal:8848
+      - NACOS_ADDR=host.docker.internal:8848
+      - spring.datasource.url=jdbc:mysql://host.docker.internal:3306/tw_db
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/tw_db
+      - spring.datasource.username=root
+      - spring.datasource.password=wzh2213254020
+      - spring.redis.host=host.docker.internal
+      - spring.zipkin.base-url=http://host.docker.internal:9411
+      - spring.redis.host=host.docker.internal
+      - spring.redis.port=6379
+
+  cinema-service:
+    image: demo2-cinema-service:latest
+    container_name: movie-cinema
+    ports:
+      - "8085:8085"
+    environment:
+      - spring.cloud.nacos.server-addr=host.docker.internal:8848
+      - NACOS_ADDR=host.docker.internal:8848
+      - spring.datasource.url=jdbc:mysql://host.docker.internal:3306/tw_db
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/tw_db
+      - spring.datasource.username=root
+      - spring.datasource.password=wzh2213254020
+      - spring.zipkin.base-url=http://host.docker.internal:9411
+      - spring.redis.host=host.docker.internal
+      - spring.redis.port=6379
+
+  schedule-service:
+    image: demo2-schedule-service:latest
+    container_name: movie-schedule
+    ports:
+      - "8084:8084"
+    environment:
+      - spring.cloud.nacos.server-addr=host.docker.internal:8848
+      - NACOS_ADDR=host.docker.internal:8848
+      - spring.datasource.url=jdbc:mysql://host.docker.internal:3306/tw_db
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/tw_db
+      - spring.datasource.username=root
+      - spring.datasource.password=wzh2213254020
+      - spring.zipkin.base-url=http://host.docker.internal:9411
+      - spring.redis.host=host.docker.internal
+      - spring.redis.port=6379
+
+  order-service:
+    image: demo2-order-service:latest
+    container_name: movie-order
+    ports:
+      - "8081:8081"
+    environment:
+      - spring.cloud.nacos.server-addr=host.docker.internal:8848
+      - NACOS_ADDR=host.docker.internal:8848
+      - spring.datasource.url=jdbc:mysql://host.docker.internal:3306/tw_db
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/tw_db
+      - spring.datasource.username=root
+      - spring.datasource.password=wzh2213254020
+      - spring.redis.host=host.docker.internal
+      - spring.zipkin.base-url=http://host.docker.internal:9411
+      - spring.redis.host=host.docker.internal
+      - spring.redis.port=6379
+
+  user-service:
+    image: demo2-user-service:latest
+    container_name: movie-user
+    ports:
+      - "8082:8082"
+    environment:
+      - spring.cloud.nacos.server-addr=host.docker.internal:8848
+      - NACOS_ADDR=host.docker.internal:8848
+      - spring.datasource.url=jdbc:mysql://host.docker.internal:3306/tw_db
+      - DB_URL=jdbc:mysql://host.docker.internal:3306/tw_db
+      - spring.datasource.username=root
+      - spring.datasource.password=wzh2213254020
+      - spring.zipkin.base-url=http://host.docker.internal:9411
+      - spring.redis.host=host.docker.internal
+      - spring.redis.port=6379
+

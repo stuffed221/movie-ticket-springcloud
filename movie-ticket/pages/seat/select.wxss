@@ -1,0 +1,88 @@
+/* pages/seat/select.wxss */
+.screen {
+  text-align: center;
+  padding: 20rpx;
+  margin: 20rpx 40rpx 40rpx;
+  background: #333;
+  color: #fff;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+.seat-grid {
+  padding: 0 20rpx;
+}
+.seat-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10rpx;
+}
+.seat {
+  width: 68rpx;
+  height: 68rpx;
+  margin: 4rpx;
+  background: #e0e0e0;
+  border-radius: 6rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  color: #666;
+  box-sizing: border-box;
+}
+.seat.selected {
+  background: #e0e0e0;
+  border: 3rpx solid #409EFF;
+  color: #409EFF;
+  font-weight: bold;
+}
+.seat.occupied {
+  background: #c0392b;
+  color: #fff;
+}
+.legend {
+  display: flex;
+  justify-content: center;
+  margin: 30rpx 0;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 0 30rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+.legend-box {
+  width: 36rpx;
+  height: 36rpx;
+  background: #e0e0e0;
+  border-radius: 4rpx;
+  margin-right: 10rpx;
+}
+.legend-box.selected {
+  background: #e0e0e0;
+  border: 3rpx solid #409EFF;
+}
+.legend-box.occupied {
+  background: #c0392b;
+}
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 20rpx 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.05);
+}
+.selected-info {
+  font-size: 28rpx;
+  color: #333;
+}
+.confirm-btn {
+  background: #409EFF;
+  color: #fff;
+  font-size: 28rpx;
+}

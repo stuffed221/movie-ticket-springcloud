@@ -1,0 +1,35 @@
+/* pages/order/confirm.wxss */
+.order-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 24rpx;
+}
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.label {
+  color: #999;
+  font-size: 28rpx;
+}
+.value {
+  font-size: 28rpx;
+  color: #333;
+}
+.price {
+  color: #f56c6c;
+  font-weight: bold;
+  font-size: 36rpx;
+}
+.submit-btn {
+  position: fixed;
+  bottom: 40rpx;
+  left: 40rpx;
+  right: 40rpx;
+  background: #409EFF;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 44rpx;
+}

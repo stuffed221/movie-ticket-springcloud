@@ -1,0 +1,36 @@
+<!--pages/user/login.wxml-->
+<view class="container">
+  <view class="login-card">
+    <view class="login-title">用户登录</view>
+    <input class="login-input" placeholder="请输入用户名" value="{{username}}" bindinput="onUsernameInput" />
+    <input class="login-input" placeholder="请输入密码" password="{{true}}" value="{{password}}" bindinput="onPasswordInput" />
+    <button class="login-btn" bindtap="doLogin">登 录</button>
+    <view class="switch" bindtap="goRegister">没有账号？去注册</view>
+  </view>
+
+  <!-- 注册蒙层 -->
+  <view class="modal-mask" wx:if="{{showRegister}}" bindtap="hideRegister"></view>
+
+  <!-- 注册表单 -->
+  <view class="modal-card" wx:if="{{showRegister}}">
+    <view class="modal-title">用户注册</view>
+    <input class="login-input" placeholder="用户名" value="{{reg.userName}}" bindinput="onRegInput" data-field="userName" />
+    <input class="login-input" placeholder="密码" password="{{true}}" value="{{reg.userPassword}}" bindinput="onRegInput" data-field="userPassword" />
+    <input class="login-input" placeholder="确认密码" password="{{true}}" value="{{confirmPassword}}" bindinput="onConfirmInput" />
+    <view class="reg-row">
+      <view class="reg-label">性别</view>
+      <radio-group bindchange="onSexChange">
+        <label class="radio-item"><radio value="男" checked="{{reg.userSex === '男'}}" />男</label>
+        <label class="radio-item"><radio value="女" checked="{{reg.userSex === '女'}}" />女</label>
+      </radio-group>
+    </view>
+    <input class="login-input" placeholder="年龄" value="{{reg.userAge}}" bindinput="onRegInput" data-field="userAge" />
+    <view class="phone-row">
+      <input class="phone-input" placeholder="手机号" value="{{reg.userPhoneNumber}}" bindinput="onRegInput" data-field="userPhoneNumber" />
+      <button class="code-btn" bindtap="sendCode" disabled="{{countdown > 0 || !reg.userPhoneNumber}}">{{countdown > 0 ? countdown + 's' : '发送验证码'}}</button>
+    </view>
+    <input class="login-input" placeholder="请输入验证码" value="{{inputCode}}" bindinput="onInputCode" />
+    <button class="login-btn" bindtap="doRegister">注 册</button>
+    <view class="switch" bindtap="hideRegister">返回登录</view>
+  </view>
+</view>

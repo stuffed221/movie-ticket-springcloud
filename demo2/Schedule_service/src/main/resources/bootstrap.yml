@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: schedule-service
+  cloud:
+    nacos:
+      config:
+        server-addr: ${NACOS_ADDR:localhost:8848}
+        file-extension: yml
+        shared-configs:
+          - data-id: common.yml
+            refresh: true

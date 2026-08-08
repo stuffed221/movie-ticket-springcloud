@@ -1,0 +1,27 @@
+/* pages/schedule/list.wxss */
+.schedule-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+.schedule-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 6rpx;
+}
+.schedule-price {
+  color: #f56c6c;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+.schedule-seats {
+  color: #409EFF;
+  font-size: 24rpx;
+}
+.empty {
+  text-align: center;
+  color: #999;
+  padding: 200rpx 0;
+}

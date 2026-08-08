@@ -1,0 +1,48 @@
+<!--pages/seat/select.wxml-->
+<wxs module="util">
+  var seatNo = function(row, col, colsLen) {
+    return (row - 1) * colsLen + col
+  }
+  var isSelected = function(arr, row, col, colsLen) {
+    var num = seatNo(row, col, colsLen)
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] === num) return true
+    }
+    return false
+  }
+  var isOccupied = function(arr, row, col, colsLen) {
+    var num = seatNo(row, col, colsLen)
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] === num) return true
+    }
+    return false
+  }
+  module.exports = { seatNo: seatNo, isSelected: isSelected, isOccupied: isOccupied }
+</wxs>
+
+<view class="container">
+  <view class="screen">银幕</view>
+
+  <view class="seat-grid">
+    <block wx:for="{{rows}}" wx:for-item="row" wx:key="*this">
+      <view class="seat-row">
+        <block wx:for="{{cols}}" wx:for-item="col" wx:key="*this">
+          <view class="seat {{util.isSelected(selectedSeats, row, col, cols.length) ? 'selected' : ''}} {{util.isOccupied(occupiedSeats, row, col, cols.length) ? 'occupied' : ''}}" data-seat="{{util.seatNo(row, col, cols.length)}}" bindtap="onSeatTap">
+            {{util.seatNo(row, col, cols.length)}}
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+
+  <view class="legend">
+    <view class="legend-item"><view class="legend-box"></view><text>可选</text></view>
+    <view class="legend-item"><view class="legend-box selected"></view><text>已选</text></view>
+    <view class="legend-item"><view class="legend-box occupied"></view><text>已售</text></view>
+  </view>
+
+  <view class="bottom-bar">
+    <view class="selected-info">已选 {{selectedSeats.length}} 张票</view>
+    <button class="confirm-btn" bindtap="confirmOrder" disabled="{{selectedSeats.length === 0}}">提交订单 ¥{{totalPrice}}</button>
+  </view>
+</view>

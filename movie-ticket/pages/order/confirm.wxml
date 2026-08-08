@@ -1,0 +1,39 @@
+<!--pages/order/confirm.wxml-->
+<view class="container">
+  <view class="card">
+    <view class="order-title">订单确认</view>
+    <view class="order-row">
+      <text class="label">影片</text>
+      <text class="value">{{schedule.scheduleMovieName}}</text>
+    </view>
+    <view class="order-row">
+      <text class="label">影院</text>
+      <text class="value">{{schedule.scheduleCinemaName}} {{schedule.scheduleHall}}号厅</text>
+    </view>
+    <view class="order-row">
+      <text class="label">场次时间</text>
+      <text class="value">{{schedule.scheduleShowTime}}</text>
+    </view>
+    <view class="order-row">
+      <text class="label">座位</text>
+      <text class="value">{{displaySeats}}</text>
+    </view>
+    <view class="order-row">
+      <text class="label">票数</text>
+      <text class="value">{{seatCount}}张</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="order-row">
+      <text class="label">单价</text>
+      <text class="value">¥{{schedule.schedulePrice}}</text>
+    </view>
+    <view class="order-row">
+      <text class="label">合计</text>
+      <text class="value price">¥{{totalPrice}}</text>
+    </view>
+  </view>
+
+  <button class="submit-btn" bindtap="submitOrder">确认下单（15分钟内支付）</button>
+</view>

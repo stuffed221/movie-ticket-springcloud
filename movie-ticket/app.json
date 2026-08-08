@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/movie/detail",
+    "pages/schedule/list",
+    "pages/seat/select",
+    "pages/order/confirm",
+    "pages/order/list",
+    "pages/user/login",
+    "pages/user/me"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#409EFF",
+    "navigationBarTitleText": "电影购票",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#409EFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/order/list",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/user/me",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

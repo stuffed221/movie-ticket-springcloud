@@ -1,0 +1,52 @@
+﻿spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/tw_db
+    username: root
+    password: #你的密码
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+  application:
+    name: movie-service
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      probability: 1.0
+
+server:
+  port: 8083
+
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+jwt:
+  secret: cinema-movie-ticket-system-jwt-secret-key-2026
+  expiration: 86400000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+aliyun:
+  oss:
+    #你的设置
+
